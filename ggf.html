@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Prajjwal Shrestha - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS to style the modal overlay and structure */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: #bef264; /* lime-400 */
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85); /* Dark semi-transparent background */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex; /* Show the modal */
+        }
+
+        .modal-content {
+            background-color: #1f2937; /* zinc-800 */
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-btn {
+            color: #bef264;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #a3e635;
+        }
+
+        /* Styles for the gallery modal - which is incomplete in the provided HTML but kept for structure */
+        .horizontal-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding-bottom: 10px;
+        }
+        .horizontal-gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-100 font-sans">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-zinc-900 bg-opacity-80 backdrop-blur-md">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center max-w-7xl">
+            <a href="#home" class="text-2xl font-bold text-lime-400 hover:text-lime-300 transition-colors">
+                Lucky Prajjwal Shrestha 
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm">
+                <a href="#about" class="font-semibold hover:text-lime-400 transition-colors">About</a>
+                <a href="#skills" class="font-semibold hover:text-lime-400 transition-colors">Skills</a>
+                <a href="#experience" class="font-semibold hover:text-lime-400 transition-colors">Experience</a>
+                <a href="#hobbies" class="font-semibold hover:text-lime-400 transition-colors">Hobbies</a>
+                <a href="#projects" class="font-semibold hover:text-lime-400 transition-colors">Projects</a>
+                <a href="#contact" class="font-semibold hover:text-lime-400 transition-colors">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-zinc-100 hover:text-lime-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-800 bg-opacity-90 backdrop-blur-md">
+            <div class="flex flex-col items-center py-4 space-y-4">
+                <a href="#about" class="font-semibold hover:text-lime-400 transition-colors">About</a>
+                <a href="#skills" class="font-semibold hover:text-lime-400 transition-colors">Skills</a>
+                <a href="#experience" class="font-semibold hover:text-lime-400 transition-colors">Experience</a>
+                <a href="#hobbies" class="font-semibold hover:text-lime-400 transition-colors">Hobbies</a>
+                <a href="#projects" class="font-semibold hover:text-lime-400 transition-colors">Projects</a>
+                <a href="#contact" class="font-semibold hover:text-lime-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section id="home" class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center gap-12 max-w-7xl">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 text-white">Hello, I'm <span class="text-lime-400">Lucky Prajjwal Shrestha</span></h1>
+                <p class="text-lg md:text-xl text-zinc-300 mb-2">Registered Electronics Engineer | Robotics Specialist</p>
+                <p class="text-base text-zinc-400 mb-8">Building intelligent systems and creating innovative digital solutions</p>
+                <a href="#contact" class="inline-block bg-lime-400 text-zinc-900 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-lime-300 transform hover:scale-105 transition-transform">
+                    Get In Touch
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://placehold.co/320x320/84cc16/18181b?text=LPS" alt="Profile picture" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl transition-transform hover:scale-105">
+            </div>
+        </section>
+
+        <section id="about" class="bg-zinc-800 py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="section-title text-zinc-100">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="https://placehold.co/600x400/444444/FFFFFF?text=About+Me" alt="About section" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="md:w-1/2 text-zinc-300 text-lg leading-relaxed space-y-4">
+                        <p>I am a **Registered Electronics Engineer** with expertise in **robotics**, **embedded systems**, and **IoT solutions**. My passion lies in designing intelligent systems that solve real-world problems through technology and innovation.</p>
+                        <p>My engineering journey began with fundamental electronics principles and has evolved into deep expertise in autonomous systems, machine learning, and advanced robotics frameworks. I combine technical precision with creative problem-solving to deliver exceptional results.</p>
+                        <p>Based in Pâtan, Bagmati Province, Nepal, I'm committed to continuous learning and technological advancement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="section-title text-zinc-100">Technical Skills</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">📊</div>
+                        <h3 class="font-semibold">MySQL</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">⚙️</div>
+                        <h3 class="font-semibold">C/C++</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🐍</div>
+                        <h3 class="font-semibold">Python</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🤖</div>
+                        <h3 class="font-semibold">Machine Learning</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">📋</div>
+                        <h3 class="font-semibold">PCB Design</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🎨</div>
+                        <h3 class="font-semibold">3D Modeling</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">⚡</div>
+                        <h3 class="font-semibold">Electronic Circuits</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">📡</div>
+                        <h3 class="font-semibold">Sensor Implementation</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🔌</div>
+                        <h3 class="font-semibold">IoT Systems</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">💾</div>
+                        <h3 class="font-semibold">CUDA</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🚀</div>
+                        <h3 class="font-semibold">ROS2</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🗺️</div>
+                        <h3 class="font-semibold">ROS2 Navigation & SLAM</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🖲️</div>
+                        <h3 class="font-semibold">PCIe</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">📝</div>
+                        <h3 class="font-semibold">Scripting</h3>
+                    </div>
+                    <div class="p-5 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:scale-105">
+                        <div class="text-3xl mb-2">🔧</div>
+                        <h3 class="font-semibold">UART/SPI</h3>
+                    </div>
+                </div>
+
+                <div class="mt-16 bg-zinc-800 p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-lime-400 mb-6">Certifications</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-lime-400 pl-6">
+                            <p class="font-semibold text-zinc-100">Energy & Environment Training - BEEN Project</p>
+                            <p class="text-zinc-500 text-sm">Organized by European Union | SWITCH-Asia Grant Programme</p>
+                            <p class="text-zinc-500 text-sm">Date: September 26, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="bg-zinc-800 py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="section-title text-zinc-100">Work Experience</h2>
+                <div class="space-y-8">
+                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border-l-4 border-lime-400 hover:shadow-xl transition-shadow">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+                            <div>
+                                <h3 class="text-2xl font-bold text-lime-400">Robotics Engineer</h3>
+                                <p class="text-xl text-zinc-300">Tech Innovations Nepal</p>
+                            </div>
+                            <span class="text-zinc-400 font-semibold">2022 - Present</span>
+                        </div>
+                        <p class="text-zinc-300 leading-relaxed">Designed and developed robotic systems using **ROS2**, **SLAM**, and autonomous navigation. Implemented **IoT solutions** and **machine learning algorithms** for industrial applications.</p>
+                    </div>
+                    
+                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border-l-4 border-lime-400 hover:shadow-xl transition-shadow">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+                            <div>
+                                <h3 class="text-2xl font-bold text-lime-400">Electronics Engineer</h3>
+                                <p class="text-xl text-zinc-300">Digital Solutions Ltd.</p>
+                            </div>
+                            <span class="text-zinc-400 font-semibold">2021 - 2022</span>
+                        </div>
+                        <p class="text-zinc-300 leading-relaxed">Developed **PCB designs** and electronic circuits for **IoT devices**. Implemented sensor integration and embedded systems using **C/C++**. Collaborated on industrial IoT applications.</p>
+                    </div>
+                    
+                    <div class="bg-zinc-900 p-8 rounded-lg shadow-lg border-l-4 border-lime-400 hover:shadow-xl transition-shadow">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+                            <div>
+                                <h3 class="text-2xl font-bold text-lime-400">Hardware Development Intern</h3>
+                                <p class="text-xl text-zinc-300">FutureTech Pvt. Ltd.</p>
+                            </div>
+                            <span class="text-zinc-400 font-semibold">2020 - 2021</span>
+                        </div>
+                        <p class="text-zinc-300 leading-relaxed">Designed Arduino-based projects and IoT prototypes. Tested hardware implementations and created technical documentation. Gained experience in embedded systems and sensor interfacing.</p>
+                    </div>
+                </div>
+            </div>
+        </section> 
+
+        <section id="hobbies" class="py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="section-title text-zinc-100">Hobbies & Interests</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-zinc-800 p-8 rounded-lg shadow-lg border-l-4 border-lime-400 hover:shadow-xl transition-shadow">
+                        <div class="text-6xl mb-4">🎨</div>
+                        <h3 class="text-2xl font-bold mb-3 text-lime-400">Art & Design</h3>
+                        <p class="text-zinc-300 leading-relaxed mb-4">Creating digital and traditional art through various mediums. Artistic skills enhance design thinking, intuitive interface development, and innovative product aesthetics.</p>
+                        <button onclick="showGallery('art')" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                            View Gallery
+                        </button>
+                    </div>
+
+                    <div class="bg-zinc-800 p-8 rounded-lg shadow-lg border-l-4 border-lime-400 hover:shadow-xl transition-shadow">
+                        <div class="text-6xl mb-4">📸</div>
+                        <h3 class="text-2xl font-bold mb-3 text-lime-400">Photography</h3>
+                        <p class="text-zinc-300 leading-relaxed mb-4">Capturing moments through the lens, exploring composition, lighting, and visual storytelling. Photography develops an appreciation for visual design that translates to user interface and product aesthetics.</p>
+                        <button onclick="showGallery('photography')" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                            View Gallery
+                        </button>
+                    </div>
+
+                    <div class="bg-zinc-800 p-8 rounded-lg shadow-lg border-l-4 border-lime-400 hover:shadow-xl transition-shadow">
+                        <div class="text-6xl mb-4">✈️</div>
+                        <h3 class="text-2xl font-bold mb-3 text-lime-400">Travel</h3>
+                        <p class="text-zinc-300 leading-relaxed mb-4">Exploring diverse landscapes, experiencing different cultures, and discovering new perspectives around the world. Travel enhances creativity and provides fresh insights for problem-solving.</p>
+                        <button onclick="showGallery('travel')" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                            View Gallery
+                        </button>
+                    </div>
+
+                </div>
+
+            <div id="galleryModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeGallery()">&times;</span>
+                    <div>
+                        <h2 id="galleryTitle" class="text-3xl font-bold text-lime-400 mb-8 text-center"></h2>
+                        <div class="horizontal-gallery" id="galleryGrid"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="bg-zinc-800 py-20">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="section-title text-zinc-100">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-zinc-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/800x600/555555/FFFFFF?text=Autonomous+Robot" alt="Autonomous Robot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-lime-400">Autonomous Navigation Robot</h3>
+                            <p class="text-zinc-400 mb-4">Advanced robot with SLAM and ROS2 navigation. Autonomous mapping, obstacle detection, and real-time path planning.</p>
+                            <p class="text-sm text-zinc-500 mb-4">ROS2 | C++ | Python | SLAM | CUDA</p>
+                            <button onclick="showProjectDetail(0)" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="bg-zinc-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/800x600/555555/FFFFFF?text=IoT+System" alt="IoT System" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-lime-400">Smart IoT Monitoring System</h3>
+                            <p class="text-zinc-400 mb-4">Multi-sensor environmental monitoring with cloud integration and real-time analytics dashboard.</p>
+                            <p class="text-sm text-zinc-500 mb-4">Arduino | Python | MySQL | IoT | PCB Design</p>
+                            <button onclick="showProjectDetail(1)" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="bg-zinc-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/800x600/555555/FFFFFF?text=ML+Model" alt="ML Classification" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-lime-400">ML-Based Classification System</h3>
+                            <p class="text-zinc-400 mb-4">Machine learning model for image recognition optimized with CUDA for high-performance edge computing.</p>
+                            <p class="text-sm text-zinc-500 mb-4">Python | ML | CUDA | Computer Vision</p>
+                            <button onclick="showProjectDetail(2)" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="bg-zinc-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/800x600/555555/FFFFFF?text=Embedded" alt="Embedded System" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-lime-400">Real-time Embedded System</h3>
+                            <p class="text-zinc-400 mb-4">Multi-sensor data acquisition with UART/SPI protocols. Real-time processing with embedded optimization.</p>
+                            <p class="text-sm text-zinc-500 mb-4">C/C++ | UART | SPI | Embedded Systems</p>
+                            <button onclick="showProjectDetail(3)" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="bg-zinc-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/800x600/555555/FFFFFF?text=PCB+Design" alt="PCB" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-lime-400">Custom PCB Development</h3>
+                            <p class="text-zinc-400 mb-4">High-density interconnect PCB designs with EMI shielding and optimized power management.</p>
+                            <p class="text-sm text-zinc-500 mb-4">PCB Design | Electronics | Circuit Design</p>
+                            <button onclick="showProjectDetail(4)" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="bg-zinc-900 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://placehold.co/800x600/555555/FFFFFF?text=Solar+System" alt="Solar Thermal" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-lime-400">Solar Thermal System</h3>
+                            <p class="text-zinc-400 mb-4">Efficient solar thermal hot water system with IoT monitoring and energy consumption optimization.</p>
+                            <p class="text-sm text-zinc-500 mb-4">IoT | Python | Energy Systems | Monitoring</p>
+                            <button onclick="showProjectDetail(5)" class="inline-block bg-lime-400 text-zinc-900 px-6 py-2 rounded-full font-bold hover:bg-lime-300 transition-colors">
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+
+         <section id="contact" class="py-20 bg-zinc-900">
+            <div class="container mx-auto px-4 max-w-7xl text-center">
+                <h2 class="section-title text-zinc-100">Get In Touch</h2>
+                <p class="text-xl text-zinc-300 mb-8">Ready to start a project? I'm always open to discussing new opportunities in robotics, embedded systems, or IoT.</p>
+                <div class="max-w-xl mx-auto space-y-4">
+                    <p class="text-lg text-zinc-400">📧 Email: <a href="mailto:luckyprajjwal@example.com" class="text-lime-400 hover:text-lime-300 font-semibold">luckyprajjwal@example.com</a></p>
+                    <p class="text-lg text-zinc-400">📞 Phone: <a href="tel:+977-9800000000" class="text-lime-400 hover:text-lime-300 font-semibold">+977-9800000000</a></p>
+                    <a href="https://linkedin.com/in/luckyprajjwal" target="_blank" class="inline-block text-zinc-400 hover:text-lime-400 mx-3 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.266-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/luckyprajjwal" target="_blank" class="inline-block text-zinc-400 hover:text-lime-400 mx-3 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.08-.737.082-.723.082-.723 1.192.085 1.82 1.215 1.82 1.215 1.06 1.815 2.762 1.289 3.432.999.108-.77.417-1.289.76-1.583-2.624-.295-5.385-1.312-5.385-5.823 0-1.284.434-2.339 1.144-3.167-.114-.295-.494-1.492.112-3.123 0 0 .937-.318 3.072 1.206 1.018-.282 2.086-.423 3.155-.427 1.07.004 2.138.145 3.156.427 2.134-1.524 3.071-1.206 3.071-1.206.608 1.631.229 2.828.113 3.123.711.828 1.143 1.883 1.143 3.167 0 4.522-2.765 5.524-5.39 5.817.427.36.815 1.096.815 2.222v3.293c0 .319.192.694.797.576c4.773-1.589 8.204-6.086 8.204-11.385c0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeProjectModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <footer class="bg-zinc-800 py-8 mt-12">
+        <div class="container mx-auto px-4 max-w-7xl text-center text-zinc-400">
+            <p>&copy; 2024 Lucky Prajjwal Shrestha. All rights reserved.</p>
+            <p class="text-sm mt-2">Built with Tailwind CSS.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Data for Project Modals
+        const projectDetails = [
+            {
+                title: "Autonomous Navigation Robot",
+                description: "An advanced autonomous robot system designed with cutting-edge robotics technology.",
+                details: [
+                    "Developed using ROS2 framework for comprehensive robotics support",
+                    "Implemented SLAM (Simultaneous Localization and Mapping) for real-time environment mapping",
+                    "Advanced obstacle detection using LIDAR sensors",
+                    "Real-time path planning with optimal route calculation",
+                    "CUDA-optimized processing for high-performance computing",
+                    "C++ for core robotics logic and Python for integration"
+                ],
+                technologies: ["ROS2", "C++", "Python", "SLAM", "CUDA", "LIDAR"],
+                timeline: "2023 - 2024",
+                status: "Completed"
+            },
+            {
+                title: "Smart IoT Monitoring System",
+                description: "A comprehensive environmental monitoring solution with cloud connectivity.",
+                details: [
+                    "Multi-sensor array for temperature, humidity, and air quality monitoring",
+                    "Real-time data collection using Arduino microcontrollers",
+                    "Cloud integration for remote monitoring and analytics",
+                    "MySQL database for time-series data storage",
+                    "Custom PCB design for hardware optimization",
+                    "Interactive dashboard for visualization"
+                ],
+                technologies: ["Arduino", "Python", "MySQL", "IoT", "PCB Design", "REST API"],
+                timeline: "2022 - 2023",
+                status: "Active"
+            },
+            {
+                title: "ML-Based Classification System",
+                description: "A machine learning solution for high-accuracy image classification at the edge.",
+                details: [
+                    "Neural network trained on diverse image datasets",
+                    "CUDA optimization for GPU acceleration",
+                    "Edge device deployment for real-time inference",
+                    "High accuracy rate with optimized model size",
+                    "Computer vision pipeline for preprocessing",
+                    "Performance benchmarking and optimization"
+                ],
+                technologies: ["Python", "TensorFlow", "CUDA", "Computer Vision", "Deep Learning"],
+                timeline: "2023 - Present",
+                status: "Active"
+            },
+            {
+                title: "Real-time Embedded System",
+                description: "A sophisticated embedded system for high-speed data acquisition and processing.",
+                details: [
+                    "Multi-sensor data acquisition at high sampling rates",
+                    "UART communication for sensor integration",
+                    "SPI protocol for fast data transfer",
+                    "Real-time OS implementation for deterministic behavior",
+                    "Low-latency processing pipeline",
+                    "Power optimization for long-term operation"
+                ],
+                technologies: ["C/C++", "UART", "SPI", "Embedded Systems", "Real-time OS"],
+                timeline: "2021 - 2023",
+                status: "Completed"
+            },
+            {
+                title: "Custom PCB Development",
+                description: "Professional-grade PCB design for high-performance electronics.",
+                details: [
+                    "High-density interconnect (HDI) board design",
+                    "EMI shielding implementation for noise reduction",
+                    "Optimized power distribution network",
+                    "Thermal management considerations",
+                    "Multi-layer board with fine pitch components",
+                    "Compliance with industry standards and certifications"
+                ],
+                technologies: ["PCB Design", "Electronics", "Circuit Design", "KiCAD/Eagle"],
+                timeline: "2022 - 2024",
+                status: "Completed"
+            },
+            {
+                title: "Solar Thermal System",
+                description: "An innovative solar thermal solution with IoT-based energy management.",
+                details: [
+                    "Efficient solar thermal collector design",
+                    "IoT monitoring for real-time system performance",
+                    "Energy consumption optimization algorithms",
+                    "Temperature and pressure sensors integration",
+                    "Data logging for trend analysis",
+                    "BEEN Project - EU funded research initiative"
+                ],
+                technologies: ["IoT", "Python", "Energy Systems", "Monitoring", "Sensors"],
+                timeline: "2023 - Present",
+                status: "Active"
+            }
+        ];
+    
+        // Function to display project details in a modal
+        function showProjectDetail(index) {
+            const project = projectDetails[index];
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.getElementById('modalBody');
+    
+            let detailsHTML = `
+                <h2 class="text-3xl font-bold text-lime-400 mb-2">${project.title}</h2>
+                <p class="text-zinc-400 mb-4">${project.description}</p>
+                
+                <div class="mb-6 pb-4 border-b border-zinc-700">
+                    <p class="text-sm"><span class="text-lime-400 font-semibold">Timeline:</span> ${project.timeline}</p>
+                    <p class="text-sm"><span class="text-lime-400 font-semibold">Status:</span> 
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold mt-1 ${project.status === 'Active' ? 'bg-green-900 text-green-200' : 'bg-blue-900 text-blue-200'}">
+                            ${project.status}
+                        </span>
+                    </p>
+                </div>
+    
+                <h3 class="text-xl font-bold text-lime-400 mb-3">Project Highlights</h3>
+                <ul class="space-y-2 mb-6 text-zinc-300">
+            `;
+    
+            project.details.forEach(detail => {
+                detailsHTML += `<li class="flex items-start gap-2">
+                    <span class="text-lime-400 mt-1">•</span>
+                    <span>${detail}</span>
+                </li>`;
+            });
+    
+            detailsHTML += `
+                </ul>
+    
+                <h3 class="text-xl font-bold text-lime-400 mb-3">Technologies Used</h3>
+                <div class="flex flex-wrap gap-2 mb-6">
+            `;
+    
+            project.technologies.forEach(tech => {
+                detailsHTML += `
+                    <span class="bg-zinc-700 text-lime-400 px-3 py-1 rounded-full text-sm font-semibold">
+                        ${tech}
+                    </span>
+                `;
+            });
+    
+            detailsHTML += `
+                </div>
+                <button onclick="closeProjectModal()" class="w-full bg-lime-400 text-zinc-900 px-6 py-2 rounded-lg font-bold hover:bg-lime-300 transition-colors">
+                    Close
+                </button>
+            `;
+    
+            modalBody.innerHTML = detailsHTML;
+            modal.classList.add('show');
+        }
+    
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('show');
+        }
+
+        // Placeholder function for the Hobbies gallery modal
+        function showGallery(type) {
+             const galleryModal = document.getElementById('galleryModal');
+             const galleryTitle = document.getElementById('galleryTitle');
+             galleryTitle.textContent = \`My \${type.charAt(0).toUpperCase() + type.slice(1)} Gallery\`;
+             // In a real application, you would dynamically load images here
+             const galleryGrid = document.getElementById('galleryGrid');
+             galleryGrid.innerHTML = '<p class="text-zinc-400 text-center w-full">Gallery feature not fully implemented. Click outside to close.</p>'; 
+             galleryModal.classList.add('show');
+        }
+
+        function closeGallery() {
+            const galleryModal = document.getElementById('galleryModal');
+            galleryModal.classList.remove('show');
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            const projectModal = document.getElementById('projectModal');
+            const galleryModal = document.getElementById('galleryModal');
+
+            if (event.target === projectModal) {
+                closeProjectModal();
+            }
+            if (event.target === galleryModal) {
+                closeGallery();
+            }
+        }
+    
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProjectModal();
+                closeGallery();
+            }
+        });
+    </script>
+</body>
+</html>
